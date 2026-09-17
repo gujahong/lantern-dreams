@@ -1,0 +1,49 @@
+<div id="archive-plan-three">
+  <h3>서고 평면도 · 3안</h3>
+  <label class="form-check"><input class="form-check-input" id="archive-paths" type="checkbox" checked><span class="form-check-label">가능한 동선 두 가지</span></label>
+  <svg id="archive-open-map" role="img" aria-label="넓어진 큰 홀. 장애물이 섬처럼 흩어져 있고 양쪽으로 통과할 수 있다. 기록은 우회하는 길 주변 열람대에 배치한다."></svg>
+  <div class="viz-row text-small"><span>원: 기둥</span><span>빗금: 무너진 부분</span><span>A·B·C: 기록 후보</span></div>
+  <style>
+    #archive-plan-three svg { display:block; width:100%; height:610px; }
+    #archive-plan-three svg text { fill:var(--foreground); font-family:inherit; font-size:var(--font-size-base); font-weight:400; }
+  </style>
+  <script>
+  (()=>{
+    const root=document.getElementById('archive-plan-three');
+    const svg=root.querySelector('#archive-open-map');
+    const toggle=root.querySelector('#archive-paths');
+    const ns='http://www.w3.org/2000/svg';
+    function draw(){
+      const w=root.getBoundingClientRect().width;if(!w)return;
+      svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${w} 610`);
+      const span=w-32;const x=n=>16+span*n/100;
+      function el(tag,attrs,text){const a=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))a.setAttribute(k,String(v));if(text!==undefined)a.textContent=text;svg.appendChild(a);return a;}
+      function label(a,y,s){el('text',{x:x(a),y,'text-anchor':'middle'},s);}
+      function box(a,y,b,h){el('rect',{x:x(a),y,width:span*b/100,height:h,fill:'var(--secondary)',stroke:'var(--border)'});}
+      function table(a,y){box(a,y,10,19);[a+1,a+7].forEach(c=>{box(c,y-6,2,4);box(c,y+21,2,4);});}
+      el('title',{},'서고 3안 — 넓은 홀 안에서 여러 방향으로 돌아갈 수 있는 배치');
+      el('rect',{x:16,y:28,width:span,height:538,fill:'none',stroke:'var(--foreground)','stroke-width':1.5});
+      const defs=el('defs',{});const p=document.createElementNS(ns,'pattern');p.setAttribute('id','archive-hatch-three');p.setAttribute('width','7');p.setAttribute('height','7');p.setAttribute('patternUnits','userSpaceOnUse');const line=document.createElementNS(ns,'path');line.setAttribute('d','M0 7L7 0');line.setAttribute('stroke','var(--foreground)');line.setAttribute('stroke-opacity','.3');p.appendChild(line);defs.appendChild(p);
+      label(50,18,'북쪽');box(32,43,36,64);el('ellipse',{cx:x(50),cy:72,rx:span*.09,ry:23,fill:'none',stroke:'var(--foreground)'});label(50,78,'그것');
+      [116,121,126].forEach(y=>el('line',{x1:x(35),x2:x(65),y1:y,y2:y,stroke:'var(--border)'}));label(50,156,'조우 전의 열린 공간');
+      [4,91].forEach(a=>[177,254,331,408,485].forEach(y=>{box(a,y,5,43);[10,20,30].forEach(d=>el('line',{x1:x(a),x2:x(a+5),y1:y+d,y2:y+d,stroke:'var(--border)'}));}));
+      [19,81].forEach(a=>[171,281,391,511].forEach(y=>el('circle',{cx:x(a),cy:y,r:5,fill:'var(--muted)',stroke:'var(--foreground)'})));
+      [[26,190],[58,197],[14,313],[74,312],[25,455],[72,438],[30,515]].forEach(([a,y])=>table(a,y));
+      function rubble(points){const attrs={points:points.map(([a,y])=>`${x(a)},${y}`).join(' ')};el('polygon',{...attrs,fill:'var(--muted)',stroke:'var(--foreground)'});el('polygon',{...attrs,fill:'url(#archive-hatch-three)'});}
+      rubble([[44,455],[48,459],[63,409],[59,403]]);
+      rubble([[32,304],[43,298],[45,317],[39,331],[28,333],[28,323]]);
+      rubble([[65,270],[70,277],[80,234],[76,230]]);
+      box(52,355,7,22);box(59,363,4,13);
+      label(51,486,'무너진 기둥');label(37,287,'부서진 서가');
+      if(toggle.checked){
+        el('path',{d:`M${x(50)} 566 C${x(50)} 517 ${x(40)} 485 ${x(37)} 440 S${x(50)} 380 ${x(51)} 328 S${x(50)} 238 ${x(44)} 207 L${x(50)} 128`,fill:'none',stroke:'var(--viz-series-1)','stroke-width':2,'stroke-dasharray':'5 5'});
+        el('path',{d:`M${x(50)} 548 C${x(66)} 512 ${x(70)} 463 ${x(70)} 413 S${x(70)} 333 ${x(57)} 289 S${x(54)} 211 ${x(50)} 128`,fill:'none',stroke:'var(--viz-series-2)','stroke-width':2,'stroke-dasharray':'2 6'});
+      }
+      [[36,433,'A'],[72,346,'B'],[44,207,'C']].forEach(([a,y,t])=>{el('circle',{cx:x(a),cy:y,r:11,fill:'var(--background)',stroke:'var(--viz-series-1)','stroke-width':1.5});label(a,y+5,t);});
+      label(12,245,'서가');label(87,301,'서가');
+      el('line',{x1:x(43),x2:x(57),y1:566,y2:566,stroke:'var(--background)','stroke-width':4});label(50,593,'입구');
+    }
+    toggle.addEventListener('change',draw);new ResizeObserver(draw).observe(root);draw();
+  })();
+  </script>
+</div>
