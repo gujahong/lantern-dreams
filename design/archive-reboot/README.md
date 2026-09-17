@@ -1,5 +1,22 @@
 # 서고 재설계와 전투 레이어
 
+## 최신 기준 — 새 게임과 ‘그것’ (2026-09-17 후속)
+
+사용자는 아트 리디자인보다는 게임을 처음부터 다시 만드는 작업이라고 설명했다. 아래의 기존 전투 합성본은 이전 단계의 시안이다. **현재 사용자가 선호한 ‘그것’은 `watcher-foreground-v4.png`**이며, 후속 구도 시안으로 대체 승인되지 않았다.
+
+| 파일 | 상태 |
+|---|---|
+| `watcher-foreground-v3.png` | 실제 알파 있음. 금빛 장식이 너무 멋있어 보인다는 피드백 |
+| `watcher-foreground-v4.png` | **사용자 선호 기준**. 기괴하고 압도적인 닳은 고리와 탁한 눈. 실제 알파 있음 |
+| `watcher-front-v1.png` | 정면 시안. 체크무늬가 구워진 RGB, 투명 아님 |
+| `watcher-low-angle-v1.png` | 별도 로우앵글 시안. 체크무늬가 구워진 RGB, 투명 아님 |
+| `watcher-front-low-angle-v2.png` | 정면 로우앵글 한 장. 실제 알파 있으나 생김새가 달라졌다는 피드백, 미승인 |
+| `watcher-front-low-angle-v3-draft.png` | v4 참조 재시도. 체크무늬가 구워진 RGB, 미승인 |
+
+원하는 구도는 **정면에서 아래로 올려다보는 로우앵글 한 장**이다. v4의 부분 편집 가능 여부를 논의했지만 수정 부위는 아직 미정이다. 이번 새 PNG는 생성 결과 그대로이며, 알파가 있는 파일도 게임 적용 전 가장자리와 반투명도를 확인해야 한다. 기존 `preview.html`은 이전 전투 레이어를 보여주며 v4 적용본이 아니다.
+
+이번 원문 프롬프트: `watcher-v3-prompt.txt`, `watcher-v4-prompt.txt`, `watcher-views-v1-prompts.txt`, `watcher-front-low-angle-v2-prompt.txt`, `watcher-front-low-angle-v3-prompt.txt`. 기존 `watcher-foreground-prompt.txt` 등은 여전히 이전 작업의 요약 기록이다.
+
 기존 게임을 참고하며 새 방향을 검토하는 작업 폴더입니다. 게임의 실제 씬에 적용하기 전의 시안이며, 타일 및 최종 도트 에셋은 아직 제작하지 않았습니다.
 
 ## 전투 이미지
